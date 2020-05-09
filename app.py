@@ -19,8 +19,10 @@ title = doc.find('h1', { 'class': 'detail__title' }).getText()
 contents = doc.find('div', { 'class': 'detail__body-text' }).findAll('p')
 
 # Clean and save
-data = {}
-data['title'] = title.replace('\n', '').strip()
+data = {
+  'title': title.replace('\n', '').strip(),
+}
+
 data['body'] = ''
 for content in contents:
   data['body'] += content.getText()
