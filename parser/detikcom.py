@@ -1,3 +1,4 @@
+import os.path
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
@@ -28,4 +29,7 @@ def get_path(url):
   else:
     path = '{}.html'.format(''.join(directory))
   return path
+
+def isexists(url):
+  return os.path.isfile(get_path(url))
 
