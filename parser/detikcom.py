@@ -33,3 +33,8 @@ def get_path(url):
 def isexists(url):
   return os.path.isfile(get_path(url))
 
+def get(url):
+  f = open(get_path(url), 'r')
+  content = f.read()
+  f.close()
+  return content
