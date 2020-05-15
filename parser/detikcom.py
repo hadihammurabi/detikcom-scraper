@@ -19,8 +19,18 @@ def parse_berita(html):
   doc = BeautifulSoup(html, features='lxml')
 
   # Get information/data
-  title = doc.find('h1', { 'class': 'detail__title' }).getText()
-  contents = doc.find('div', { 'class': 'detail__body-text' }).findAll('p')
+  title = doc.find('h1', { 'class': 'detail__title' })
+  contents = doc.find('div', { 'class': 'detail__body-text' })
+
+  if title is not None:
+    title = title.getText()
+  else:
+    title = ''
+
+  if contents is not None:
+    contents = contents.findAll('p')
+  else:
+    contents = None
 
   # Clean and save
   data = {
@@ -28,8 +38,9 @@ def parse_berita(html):
   }
 
   data['body'] = ''
-  for content in contents:
-    data['body'] += content.getText()
+  if contents is not None:
+    for content in contents:
+      data['body'] += content.getText()
 
   return data
 
