@@ -1,17 +1,22 @@
 import scraper
-from parser import detikcom
+import parser.detikcom as parser
 
 def run():
-  url = 'https://news.detik.com/berita/d-5007699/influencer-ini-bagikan-tips-tetap-produktif-saat-pandemi-covid-19'
+  html_index = scraper.get_index(date="05/15/2020", page=1)
+  indexes = parser.parse_index(html_index)
+  print(indexes)
 
-  html = ''
-  if detikcom.isexists(url):
-    html = detikcom.get(url)
-  else:
-    html = scraper.get(url)
+  with open('output', 'a') as f:
+    f.write(str(indexes))
+    f.close()
 
-  data = detikcom.parse(html)
-  print(data)
+  for index in indexes:
+    html_berita = scraper.get_berita(index['url'])
+    data = parser.parse_berita(html_berita)
+    print(data)
+    with open('output', 'a') as f:
+      f.write(str(data))
+      f.close()
 
 if __name__ == '__main__':
   run()
