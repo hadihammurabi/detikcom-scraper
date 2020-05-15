@@ -2,7 +2,19 @@ import os.path
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
-def parse(html):
+def parse_index(html):
+  doc = BeautifulSoup(html, features='lxml')
+  items = doc.find_all('article', { 'class': 'list-content__item'})
+  data = []
+  for item in items:
+    title = item.find('h3', {'class': 'media__title'}).find('a', {'class': 'media__link'})
+    data.append({
+      'title': title.getText(),
+      'url': title['href'],
+    })
+  return data
+
+def parse_berita(html):
   # Website document processing
   doc = BeautifulSoup(html, features='lxml')
 
