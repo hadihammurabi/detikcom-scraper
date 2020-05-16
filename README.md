@@ -7,8 +7,9 @@ ini, Anda harus menyiapkan beberapa bahan.
 
 ## Tools
 Berikut tools yang dibutuhkan dengan versi yang disarankan.
-1. Python versi 3.7 ke atas
-2. PIP versi 20 ke atas
+1. [Python](https://www.python.org/) versi 3.7 ke atas.
+2. [PIP](https://pip.pypa.io/en/stable/) versi 20 ke atas.
+3. [Chromedriver](https://chromedriver.chromium.org/) versi 81 ke atas.
 
 ## Library
 Karena proyek ini dibuat menggunakan Python, Anda harus
